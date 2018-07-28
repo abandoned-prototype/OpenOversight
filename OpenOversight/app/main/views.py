@@ -21,7 +21,7 @@ from ..utils import (grab_officers, roster_lookup, upload_file, compute_hash,
                      ac_can_edit_officer, add_department_query, add_unit_query,
                      create_incident, get_or_create, replace_list,
                      set_dynamic_default, create_note,
-                     get_uploaded_cropped_image,dept_choices_nonempty)
+                     get_uploaded_cropped_image, dept_choices_nonempty)
 
 from .forms import (FindOfficerForm, FindOfficerIDForm, AddUnitForm,
                     FaceTag, AssignmentForm, DepartmentForm, AddOfficerForm,

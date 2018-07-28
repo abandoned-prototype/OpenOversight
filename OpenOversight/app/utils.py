@@ -49,6 +49,7 @@ def unit_choices():
 def dept_choices():
     return db.session.query(Department).all()
 
+
 def dept_choices_nonempty():
     return Department.query.filter(Department.officers.any())
 
