@@ -9,7 +9,7 @@ from wtforms.validators import (DataRequired, AnyOf, NumberRange, Regexp,
                                 Length, Optional, Required, URL, ValidationError)
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 
-from ..utils import unit_choices, dept_choices
+from ..utils import unit_choices, dept_choices, dept_choices_nonempty
 from .choices import GENDER_CHOICES, RACE_CHOICES, RANK_CHOICES, STATE_CHOICES, LINK_CHOICES
 from ..formfields import TimeField
 from ..widgets import BootstrapListWidget, FormFieldWidget
@@ -38,7 +38,7 @@ class FindOfficerForm(Form):
     badge = StringField('badge', default='', validators=[Regexp('\w*'),
                                                          Length(max=10)])
     dept = QuerySelectField('dept', validators=[DataRequired()],
-                            query_factory=dept_choices, get_label='name')
+                            query_factory=dept_choices_nonempty, get_label='name')
     rank = SelectField('rank', default='COMMANDER', choices=RANK_CHOICES,
                        validators=[AnyOf(allowed_values(RANK_CHOICES))])
     race = SelectField('race', default='WHITE', choices=RACE_CHOICES,
