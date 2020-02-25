@@ -46,7 +46,7 @@ test: start  ## Run tests
 
 .PHONY: cleanassets
 cleanassets:
-	rm -rf ./OpenOversight/app/static/dist/
+	docker-compose exec web rm -rf ./app/static/dist/
 
 .PHONY: stop
 stop:  ## Stop containers
