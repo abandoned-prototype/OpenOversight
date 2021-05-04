@@ -41,4 +41,4 @@ jobs:
         run: flake8 --ignore=E501,E722,W504,W503
       # Runs tests
       - name: Run tests
-        run: FLASK_ENV=testing pytest --doctest-modules -n 4 --dist=loadfile -v OpenOversight/tests/ app;
+        run: FLASK_ENV=testing pytest --doctest-modules -n 4 --dist=loadfile -v OpenOversight/tests/ OpenOversight/app;
