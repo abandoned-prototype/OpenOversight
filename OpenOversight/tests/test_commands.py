@@ -52,28 +52,6 @@ def run_command_print_output(cli, args=None, **kwargs):
     return result
 
 
-def test_add_department__success(session):
-    name = "Added Police Department"
-    short_name = "APD"
-    unique_internal_identifier = "30ad0au239eas939asdj"
-
-    # add department via command line
-    result = run_command_print_output(
-        add_department, [name, short_name, unique_internal_identifier]
-    )
-
-    # command ran successful
-    assert result.exit_code == 0
-    # department was added to database
-    departments = Department.query.filter_by(
-        unique_internal_identifier_label=unique_internal_identifier
-    ).all()
-    assert len(departments) == 1
-    department = departments[0]
-    assert department.name == name
-    assert department.short_name == short_name
-
-
 def test_add_department__duplicate(session):
     name = "Duplicate Department"
     short_name = "DPD"
@@ -1239,3 +1217,25 @@ def test_create_officer_from_row_adds_new_officer_and_normalizes_gender(app, ses
         assert lookup_officer is not None
         # Was the gender properly normalized?
         assert lookup_officer.gender == "F"
+
+
+def test_add_department__success(session):
+    name = "Added Police Department"
+    short_name = "APD"
+    unique_internal_identifier = "30ad0au239eas939asdj"
+
+    # add department via command line
+    result = run_command_print_output(
+        add_department, [name, short_name, unique_internal_identifier]
+    )
+
+    # command ran successful
+    assert result.exit_code == 0
+    # department was added to database
+    departments = Department.query.filter_by(
+        unique_internal_identifier_label=unique_internal_identifier
+    ).all()
+    assert len(departments) == 1
+    department = departments[0]
+    assert department.name == name
+    assert department.short_name == short_name
